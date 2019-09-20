@@ -15,7 +15,8 @@
   "scripts": {
     "start": "ts-node ./igo.ts",
     "build": "tsc",
-    "test": "./node_modules/.bin/mocha"
+    "type": "tsc --noEmit",
+    "test": "npm run type && jest"
   },
   "dependencies": {
     "typescript": "^3.6.3"
