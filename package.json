@@ -1,22 +1,49 @@
 {
-    "name": "igo-javascript",
-    "description": "Morphological analyzer for Javascript",
-    "version": "0.0.1",
-    "author": "Ichinose Shogo <shogo82148@gmail.com>",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/shogo82148/igo-javascript.git"
+  "name": "igo-typescript",
+  "description": "Morphological analyzer for TypeScript",
+  "license": "MIT",
+  "version": "0.0.1",
+  "author": "Yoshiaki Shin <shinyoshiaki2012@gmail.com>,Ichinose Shogo <shogo82148@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shinyoshiaki/igo-typescript"
+  },
+  "bugs": {
+    "url": "https://github.com/shinyoshiaki/igo-typescript/issues"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "ts-node ./igo.ts",
+    "build": "tsc",
+    "test": "./node_modules/.bin/mocha"
+  },
+  "dependencies": {
+    "typescript": "^3.6.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.5",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
+    "ts-node": "^8.4.1",
+    "tslib": "^1.10.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
     },
-    "bugs": {
-        "url": "https://github.com/shogo82148/igo-javascript/issues"
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      }
     },
-    "dependencies": {
-        "express": "latest",
-        "mocha": "latest",
-        "should": "latest"
-    },
-    "scripts": {
-        "test": "./node_modules/.bin/mocha"
-    },
-    "license": "MIT"
+    "testMatch": [
+      "**/*.test.ts"
+    ]
+  }
 }
