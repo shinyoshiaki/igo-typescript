@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 
 import { Tagger } from "../../src";
 import { loadTagger } from "./igo";
@@ -7,6 +7,7 @@ import useInput from "./hooks/useInput";
 
 const App: FC = () => {
   const taggerRef = useRef<Tagger>();
+  const [ime, setIme] = useState("");
 
   useAsyncEffect(async () => {
     taggerRef.current = await loadTagger();
@@ -14,13 +15,14 @@ const App: FC = () => {
 
   const [text, input] = useInput(s => {
     const tagger = taggerRef.current;
-    console.log(tagger.parseNBest(s, 10));
+    setIme(JSON.stringify(tagger.parseNBest(s, 10)));
   });
 
   return (
     <div>
       <p>{text}</p>
       <input onChange={input} />
+      <p>{ime}</p>
     </div>
   );
 };
