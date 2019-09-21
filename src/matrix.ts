@@ -4,8 +4,10 @@ export class Matrix {
   leftSize: number;
   rightSize: number;
   matrix: ShortArray;
-  constructor(buffer: Uint8Array, bigendian?: any) {
-    const fmis = new ArrayBufferStream(buffer, bigendian);
+  constructor(buffer: ArrayBuffer | Uint8Array, bigendian?: any) {
+    buffer = new Uint8Array(buffer);
+
+    const fmis = new ArrayBufferStream(buffer as Uint8Array, bigendian);
     this.leftSize = fmis.getInt();
     this.rightSize = fmis.getInt();
     this.matrix = fmis.getShortArray(this.leftSize * this.rightSize);

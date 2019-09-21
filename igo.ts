@@ -1,8 +1,8 @@
 import { CharCategory } from "./src/charcategory";
-import { WordDic } from "./src/worddic";
-import { Unknown } from "./src/unknown";
 import { Matrix } from "./src/matrix";
 import { Tagger } from "./src/tagger";
+import { Unknown } from "./src/unknown";
+import { WordDic } from "./src/worddic";
 
 const fs = require("fs");
 
@@ -16,11 +16,10 @@ function loadTagger(dicdir: string) {
     "word.inf",
     "matrix.bin"
   ];
-  const files = new Array();
+  const files: { [key: string]: ArrayBuffer } = {};
   for (let i = 0; i < dicfiles.length; ++i) {
     files[dicfiles[i]] = fs.readFileSync(dicdir + "/" + dicfiles[i]);
   }
-
   const category = new CharCategory(
     files["code2category"],
     files["char.category"]

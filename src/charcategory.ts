@@ -1,13 +1,21 @@
-import { getIntArray, ArrayBufferStream, IntArray } from "./util";
+import { ArrayBufferStream, IntArray, getIntArray } from "./util";
+
 import { Category } from "./category";
 
 export class CharCategory {
   categories: Category[];
   char2id: IntArray;
   eqlMasks: IntArray;
-  constructor(code2category: any, charcategory: any, bigendian?: any) {
+  constructor(
+    code2category: ArrayBuffer | Uint8Array,
+    charcategory: ArrayBuffer | Uint8Array,
+    bigendian?: any
+  ) {
+    code2category = new Uint8Array(code2category);
+    charcategory = new Uint8Array(charcategory);
+
     this.categories = CharCategory.readCategories(charcategory, bigendian);
-    const fmis = new ArrayBufferStream(code2category, bigendian);
+    const fmis = new ArrayBufferStream(code2category as Uint8Array, bigendian);
     this.char2id = fmis.getIntArray(fmis.size() / 4 / 2);
     this.eqlMasks = fmis.getIntArray(fmis.size() / 4 / 2);
   }

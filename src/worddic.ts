@@ -1,11 +1,12 @@
 import {
   ArrayBufferStream,
-  getCharArray,
-  getIntArray,
-  ShortArray,
+  CharArray,
   IntArray,
-  CharArray
+  ShortArray,
+  getCharArray,
+  getIntArray
 } from "./util";
+
 import { Searcher } from "./searcher";
 import { ViterbiNode } from "./viterbinode";
 
@@ -18,17 +19,22 @@ export class WordDic {
   rightIds: ShortArray;
   costs: ShortArray;
   constructor(
-    word2id: Buffer,
-    worddat: Buffer,
-    wordary: Buffer,
-    wordinf: Buffer,
+    word2id: ArrayBuffer | Uint8Array,
+    worddat: ArrayBuffer | Uint8Array,
+    wordary: ArrayBuffer | Uint8Array,
+    wordinf: ArrayBuffer | Uint8Array,
     bigendian?: boolean
   ) {
-    this.trie = new Searcher(new Uint8Array(word2id), bigendian);
-    this.data = getCharArray(new Uint8Array(worddat), bigendian);
-    this.indices = getIntArray(new Uint8Array(wordary), bigendian);
+    word2id = new Uint8Array(word2id);
+    worddat = new Uint8Array(worddat);
+    wordary = new Uint8Array(wordary);
+    wordinf = new Uint8Array(wordinf);
 
-    const fmis = new ArrayBufferStream(new Uint8Array(wordinf), bigendian);
+    this.trie = new Searcher(word2id as Uint8Array, bigendian);
+    this.data = getCharArray(worddat as Uint8Array, bigendian);
+    this.indices = getIntArray(wordary as Uint8Array, bigendian);
+
+    const fmis = new ArrayBufferStream(wordinf as Uint8Array, bigendian);
     const wordCount = fmis.size() / (4 + 2 + 2 + 2);
 
     //dataOffsets[単語ID] = 単語の素性データの開始位置
