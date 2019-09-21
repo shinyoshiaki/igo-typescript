@@ -1,8 +1,10 @@
-import { CharCategory } from "./charcategory";
-import { WordDic } from "./worddic";
-import { Unknown } from "./unknown";
-import { Matrix } from "./matrix";
-import { Tagger } from "./tagger";
 import * as util from "./util";
 
-export { CharCategory, WordDic, Unknown, Matrix, Tagger, util };
+import { Morpheme, Tagger } from "./tagger";
+
+import { CharCategory } from "./charcategory";
+import { Matrix } from "./matrix";
+import { Unknown } from "./unknown";
+import { WordDic } from "./worddic";
+
+export { CharCategory, WordDic, Unknown, Matrix, Tagger, util, Morpheme };

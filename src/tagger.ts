@@ -1,10 +1,10 @@
-import { WordDic } from "./worddic";
-import { Unknown } from "./unknown";
 import { Matrix } from "./matrix";
-import { jsheap } from "./jsheap";
+import { Unknown } from "./unknown";
 import { ViterbiNode } from "./viterbinode";
+import { WordDic } from "./worddic";
+import { jsheap } from "./jsheap";
 
-class Morpheme {
+export class Morpheme {
   constructor(
     public surface: string,
     public feature: string,
